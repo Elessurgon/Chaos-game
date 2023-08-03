@@ -18,6 +18,6 @@ fn main() {
         2,
     );
     let p = &Vector2::new(0, 0);
-    sim.run(10e6 as i128, &p);
+    sim.run(5000 as i128, &p);
     to_image(sim.mat);
 }

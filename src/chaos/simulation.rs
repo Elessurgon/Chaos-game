@@ -62,9 +62,10 @@ impl Simulation {
             let v2 = Vector2::new(p.x as i32, p.y as i32);
             // eprint!("{:?} {:?}\n", v1, v2);
             let draw_pt: Vector2<i32> = Vector2::new(
-                (v1[0] - v2[0]).abs() / self.proportion,
-                (v1[1] - v2[1]).abs() / self.proportion,
+                (v1[0] + v2[0]).abs() / self.proportion,
+                (v1[1] + v2[1]).abs() / self.proportion,
             );
+            // eprint!("{:?} \n", draw_pt);
 
             self.draw(&draw_pt);
             rp = draw_pt;
