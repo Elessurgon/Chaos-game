@@ -1,23 +1,37 @@
 mod chaos;
 
+use anyhow::{Context, Result};
 use chaos::simulation::to_image;
 use chaos::simulation::{Point, Simulation};
-use nalgebra::Vector2;
+use clap::Parser;
+use colored::Colorize;
+use nalgebra::{Vector, Vector2};
+#[derive(Parser)]
+struct Cli {
+    #[arg(short = 'x')]
+    x: usize,
+    #[arg(short = 'y')]
+    y: usize,
+    #[clap(required = true, num_args = 1.., short='p', long="points")]
+    pts: Vec<usize>,
+    #[arg(short = 'd', long = "dist")]
+    prop: i32,
+    #[arg(short = 'i', long = "iter")]
+    iters: i128,
+}
 
-use crate::chaos::chaos::test;
+fn run_cli() {
+    let args = Cli::parse();
+    let mut v: Vec<usize> = args.pts;
+    let vs = v
+        .chunks(2)
+        .map(|x| Point { x: x[0], y: x[1] })
+        .collect::<Vec<_>>();
+    let mut sim = Simulation::new(args.x as usize, args.y as usize, vs, args.prop);
+    sim.run(args.iters, &Vector2::new(0, 0));
+    to_image(sim.mat)
+}
 
 fn main() {
-    let mut sim = Simulation::new(
-        1000,
-        1000,
-        vec![
-            Point { x: 800, y: 200 },
-            Point { x: 200, y: 500 },
-            Point { x: 850, y: 850 },
-        ],
-        2,
-    );
-    let p = &Vector2::new(0, 0);
-    sim.run(5000 as i128, &p);
-    to_image(sim.mat);
+    run_cli();
 }

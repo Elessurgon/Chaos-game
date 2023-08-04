@@ -2,6 +2,7 @@ use std::ops::{Mul, Sub};
 
 use image::{ImageBuffer, RgbImage};
 extern crate nalgebra as na;
+use clap::Parser;
 use na::{abs, ArrayStorage, Dyn, MatrixMN, OMatrix, SMatrix, VecStorage, Vector2};
 use rand::seq::SliceRandom;
 
@@ -23,11 +24,11 @@ pub fn to_image(mat: Matrix) {
     img.save("test.png").unwrap();
 }
 
+#[derive(Debug)]
 pub struct Point {
     pub x: usize,
     pub y: usize,
 }
-
 pub struct Simulation {
     pub mat: Matrix,
     pub pts: Vec<Point>,
@@ -60,12 +61,10 @@ impl Simulation {
             let p = self.pts.choose(&mut rand::thread_rng()).unwrap();
             let v1 = Vector2::new(rp.x, rp.y);
             let v2 = Vector2::new(p.x as i32, p.y as i32);
-            // eprint!("{:?} {:?}\n", v1, v2);
             let draw_pt: Vector2<i32> = Vector2::new(
                 (v1[0] + v2[0]).abs() / self.proportion,
                 (v1[1] + v2[1]).abs() / self.proportion,
             );
-            // eprint!("{:?} \n", draw_pt);
 
             self.draw(&draw_pt);
             rp = draw_pt;
