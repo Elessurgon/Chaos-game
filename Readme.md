@@ -19,4 +19,4 @@ Example 3\
   -p, --points <COORDINATES>...
   -d, --dist <PROP>
   -i, --iter <ITERS>
-  -h, --help               ``
+  -h, --help``
