@@ -10,13 +10,13 @@ Example 3\
 `cargo run -- -x 2000 -y 2000 -e 10 -d 3 -i 500000`\
 ![10 points equidistant proporional distance of a third iterated 500_000 times](./assets/image3.png)
 
- ``Usage: chaos_game.exe -x <X> -y <Y> --dist <PROP> --iter <ITERS> <--equidistant <PTS>|--points <COORDINATES>...>``
+ ``Usage: chaos_game.exe [OPTIONS]``
 
  ``Options:
-  -x <X>
-  -y <Y>
-  -e, --equidistant <PTS>
+  -x <X>                         [default: 1000]
+  -y <Y>                         [default: 1000]
+  -e, --equidistant <PTS>        [default: 3]
   -p, --points <COORDINATES>...
-  -d, --dist <PROP>
-  -i, --iter <ITERS>
-  -h, --help``
+  -d, --dist <PROP>              [default: 2]
+  -i, --iter <ITERS>             [default: 10000]
+  -h, --help                     Print help``

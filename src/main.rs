@@ -1,6 +1,7 @@
 mod chaos;
 
 use std::f64::consts::PI;
+use std::fmt::{self, Display};
 
 use anyhow::{Context, Result};
 use chaos::simulation::to_image;
@@ -10,23 +11,23 @@ use colored::Colorize;
 use nalgebra::{Vector, Vector2};
 #[derive(Parser, Debug)]
 struct Cli {
-    #[arg(short = 'x')]
+    #[arg(short = 'x', default_value_t = 1000)]
     x: usize,
-    #[arg(short = 'y')]
+    #[arg(short = 'y', default_value_t = 1000)]
     y: usize,
     #[clap(flatten)]
     pts: PointsGroup,
-    #[arg(short = 'd', long = "dist")]
+    #[arg(short = 'd', long = "dist", default_value_t = 2)]
     prop: i32,
-    #[arg(short = 'i', long = "iter")]
+    #[arg(short = 'i', long = "iter", default_value_t = 10000)]
     iters: i128,
 }
 
 #[derive(Debug, clap::Args)]
-#[group(required = true, multiple = false)]
+#[group(multiple = false)]
 struct PointsGroup {
-    #[clap(short = 'e', long = "equidistant")]
-    pts: Option<i32>,
+    #[clap(short = 'e', long = "equidistant", default_value_t = 3)]
+    pts: i32,
     #[clap(num_args = 1.., short='p', long="points")]
     coordinates: Option<Vec<usize>>,
 }
@@ -43,7 +44,7 @@ fn run_cli() {
                 .collect::<Vec<_>>();
         }
         None => {
-            let n = args.pts.pts.unwrap();
+            let n = args.pts.pts;
             for i in 1..n + 1 {
                 vs.push(Point {
                     x: ((args.x as f64 / 3.0) as f64 * (((2.0 * PI * i as f64) / n as f64).cos())
