@@ -33,7 +33,6 @@ struct Points_Group {
 
 fn run_cli() {
     let args = Cli::parse();
-    eprint!("{:#?}", args);
 
     let mut vs: Vec<Point> = Vec::new();
     match args.pts.coordinates {
@@ -56,7 +55,6 @@ fn run_cli() {
         }
     }
 
-    eprint!("{:#?}", vs);
     let mut sim = Simulation::new(args.x as usize, args.y as usize, vs, args.prop);
     sim.run(args.iters, &Vector2::new(0, 0));
     to_image(sim.mat)
