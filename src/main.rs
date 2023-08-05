@@ -15,7 +15,7 @@ struct Cli {
     #[arg(short = 'y')]
     y: usize,
     #[clap(flatten)]
-    pts: Points_Group,
+    pts: PointsGroup,
     #[arg(short = 'd', long = "dist")]
     prop: i32,
     #[arg(short = 'i', long = "iter")]
@@ -24,7 +24,7 @@ struct Cli {
 
 #[derive(Debug, clap::Args)]
 #[group(required = true, multiple = false)]
-struct Points_Group {
+struct PointsGroup {
     #[clap(short = 'e', long = "equidistant")]
     pts: Option<i32>,
     #[clap(num_args = 1.., short='p', long="points")]
