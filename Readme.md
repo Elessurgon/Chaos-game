@@ -13,10 +13,10 @@ Example 3\
  ``Usage: chaos_game.exe [OPTIONS]``
 
  ``Options:
-  -x <X>                         [default: 1000]
-  -y <Y>                         [default: 1000]
-  -e, --equidistant <PTS>        [default: 3]
-  -p, --points <COORDINATES>...
-  -d, --dist <PROP>              [default: 2]
-  -i, --iter <ITERS>             [default: 10000]
+  -x <X>                         [default: 1000]\
+  -y <Y>                         [default: 1000]\
+  -e, --equidistant <PTS>        [default: 3]\
+  -p, --points <COORDINATES>...\
+  -d, --dist <PROP>              [default: 2]\
+  -i, --iter <ITERS>             [default: 10000]\
   -h, --help                     Print help``
