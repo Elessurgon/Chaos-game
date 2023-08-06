@@ -10,6 +10,7 @@ type Matrix = OMatrix<f32, Dyn, Dyn>;
 
 pub fn to_image(mat: Matrix) {
     let (imgx, imgy) = mat.shape();
+    let pb = indicatif::ProgressBar::new((imgx * imgy) as u64);
     let mut img: RgbImage = ImageBuffer::new(imgx as u32, imgy as u32);
 
     for x in 0..imgx as u32 {
@@ -18,6 +19,7 @@ pub fn to_image(mat: Matrix) {
             if mat[(x as usize, y as usize)] == 1.0 {
                 *pixel = image::Rgb([255, 255, 255]);
             }
+            pb.inc(1);
         }
     }
 
@@ -55,9 +57,11 @@ impl Simulation {
     }
 
     pub fn run(&mut self, iters: i128, start: &Vector2<i32>) {
+        let pb = indicatif::ProgressBar::new(iters as u64);
+
         self.draw(&start);
         let mut rp = start.clone();
-        for _ in 0..iters {
+        for i in 0..iters {
             let p = self.pts.choose(&mut rand::thread_rng()).unwrap();
             let v1 = Vector2::new(rp.x, rp.y);
             let v2 = Vector2::new(p.x as i32, p.y as i32);
@@ -68,6 +72,7 @@ impl Simulation {
 
             self.draw(&draw_pt);
             rp = draw_pt;
+            pb.inc(1);
         }
     }
 }
