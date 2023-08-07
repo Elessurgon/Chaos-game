@@ -25,6 +25,9 @@ Example 6\
 `cargo run -- -x 1000 -y 1000 -e 10 -n 10 -d 13 -i 10000000`\
 <img src="./assets/image6.png" alt="10 points equidistant proportional distance of a 10/13 iterated 10_000_000 times" width="250" height=250/>
 
+Example 7\
+`cargo run -- -x 1000 -y 1000 -e 5 -n 5 -d 8 -i 100000 --color 0,0,0 -t 4.7`\
+<img src="./assets/image7.png" alt="a pentagon with a jump of 5/8 and rotated by 4.7 radians" width="250" height=250/>
 
 Vicsek fractal\
 `cargo run -- -x 2000 -y 2000 --points 0 0 1999 0 0 1999 1999 1999 1000 1000 -n 2 -d 3 --iter 10000000 --color 0,0,0`\
@@ -33,6 +36,8 @@ Vicsek fractal\
 Sierpinski carpet\
 `cargo run -- -x 2000 -y 2000 --points 0 0 1999 0 0 1999 1999 1999 0 1000 1000 0 1999 1000 1000 1999 -n 2 -d 3 --iter 10000000 --color 0,0,0`\
 <img src="./assets/Sierpinski carpet.png" alt="a square with points in the midpoint of the 4 sides with a jump of 2/3" width="250" height=250/>
+
+
 
  ``Usage: chaos_game.exe [OPTIONS]``
 
