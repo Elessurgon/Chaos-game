@@ -30,10 +30,17 @@ struct Cli {
 #[derive(Debug, clap::Args)]
 #[group(multiple = false)]
 struct PointsGroup {
-    #[clap(short = 'e', long = "equidistant", default_value_t = 3)]
-    pts: i32,
+    #[clap(flatten)]
+    pol: Polar,
     #[clap(num_args = 1.., short='p', long="points")]
     coordinates: Option<Vec<usize>>,
+}
+#[derive(Debug, clap::Args)]
+struct Polar {
+    #[clap(short = 'e', long = "equidistant", default_value_t = 3)]
+    pts: i32,
+    #[clap(short = 't', long = "theta", default_value_t = 1.0)]
+    theta: f64,
 }
 
 fn run_cli() -> Result<(), Error> {
@@ -48,15 +55,18 @@ fn run_cli() -> Result<(), Error> {
                 .collect::<Vec<_>>();
         }
         None => {
-            let n = args.pts.pts;
-            for i in 1..n + 1 {
+            let n = args.pts.pol;
+            for i in 0..n.pts {
                 vs.push(Point {
-                    x: ((args.x as f64 / 3.0) as f64 * (((2.0 * PI * i as f64) / n as f64).cos())
+                    x: ((args.x as f64 / 3.0) as f64
+                        * (((2.0 * PI * i as f64 + n.theta) / n.pts as f64).cos())
                         + (args.x / 2) as f64) as usize,
-                    y: ((args.y as f64 / 3.0) as f64 * (((2.0 * PI * i as f64) / n as f64).sin())
+                    y: ((args.y as f64 / 3.0) as f64
+                        * (((2.0 * PI * i as f64 + n.theta) / n.pts as f64).sin())
                         + (args.y / 2) as f64) as usize,
                 })
             }
+            print!("{:#?}", vs);
         }
     }
 

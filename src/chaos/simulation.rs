@@ -82,7 +82,6 @@ impl Simulation {
     }
 
     fn draw(&mut self, pt: &Vector2<i32>, index: usize) {
-        // eprint!("{:#?}\n", pt);
         let x: &mut f32 = &mut self.mat[(pt[0] as usize, pt[1] as usize)];
         *x = (index + 1) as f32;
     }

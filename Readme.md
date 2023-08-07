@@ -28,17 +28,17 @@ Example 6\
 
 Vicsek fractal\
 `cargo run -- -x 2000 -y 2000 --points 0 0 1999 0 0 1999 1999 1999 1000 1000 -n 2 -d 3 --iter 10000000 --color 0,0,0`\
-<img src="./assets/Vicsek fractal.png" alt="a square with a point in the centre with a jump os 2/3" width="250" height=250/>
+<img src="./assets/Vicsek fractal.png" alt="a square with a point in the centre with a jump of 2/3" width="250" height=250/>
 
 Sierpinski carpet\
 `cargo run -- -x 2000 -y 2000 --points 0 0 1999 0 0 1999 1999 1999 0 1000 1000 0 1999 1000 1000 1999 -n 2 -d 3 --iter 10000000 --color 0,0,0`\
-<img src="./assets/Sierpinski carpet.png" alt="a square with a points in the midpoint of the 3 sides with a jump of 2/3" width="250" height=250/>
+<img src="./assets/Sierpinski carpet.png" alt="a square with points in the midpoint of the 4 sides with a jump of 2/3" width="250" height=250/>
 
  ``Usage: chaos_game.exe [OPTIONS]``
 
  ```
  Options:
-    -x <X>                         [default: 1000]
+  -x <X>                         [default: 1000]
   -y <Y>                         [default: 1000]
   -e, --equidistant <PTS>        [default: 3]
   -p, --points <COORDINATES>...
