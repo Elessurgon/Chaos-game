@@ -20,6 +20,13 @@ Example 4\
 `cargo run -- -x 1000 -y 1000 -e 5 -n 3.3 -d 5.5 -i 100000`\
 <img src="./assets/image5.png" alt="5 points equidistant proportional distance of a 3.3/5.5(=0.6) iterated 100_000 times" width="250" height=250/>
 
+
+Using $\frac{n}{n+3}$ should yield equidistance an fractal structure
+
+Example 4\
+`cargo run -- -x 1000 -y 1000 -e 10 -n 10 -d 13 -i 10000000`\
+<img src="./assets/image6.png" alt="10 points equidistant proportional distance of a 10/13 iterated 10_000_000 times" width="250" height=250/>
+
  ``Usage: chaos_game.exe [OPTIONS]``
 
  ```
