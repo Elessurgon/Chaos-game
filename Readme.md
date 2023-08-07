@@ -10,11 +10,15 @@ Example 2\
 Example 3\
 `cargo run -- -x 2000 -y 2000 -e 10 -d 3 -i 500000`\
 
-<img src="./assets/image3.png" alt="10 points equidistant proporional distance of a third iterated 500_000 times" width="250" height=250/>
+<img src="./assets/image3.png" alt="10 points equidistant proportional distance of a third iterated 500_000 times" width="250" height=250/>
 
 Example 4\
 `cargo run -- -x 10000 -y 10000 -e 10 -n 4 -d 5 -i 10000000`\
-<img src="./assets/image4.png" alt="10 points equidistant proporional distance of a 4/5 iterated 10_000_000 times" width="250" height=250/>
+<img src="./assets/image4.png" alt="10 points equidistant proportional distance of a 4/5 iterated 10_000_000 times" width="250" height=250/>
+
+Example 4\
+`cargo run -- -x 1000 -y 1000 -e 5 -n 3.3 -d 5.5 -i 100000`\
+<img src="./assets/image5.png" alt="5 points equidistant proportional distance of a 3.3/5.5(=0.6) iterated 100_000 times" width="250" height=250/>
 
  ``Usage: chaos_game.exe [OPTIONS]``
 
