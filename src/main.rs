@@ -39,7 +39,7 @@ struct PointsGroup {
 struct Polar {
     #[clap(short = 'e', long = "equidistant", default_value_t = 3)]
     pts: i32,
-    #[clap(short = 't', long = "theta", default_value_t = 1.0)]
+    #[clap(short = 't', long = "theta", default_value_t = 0.0)]
     theta: f64,
 }
 
