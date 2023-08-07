@@ -46,6 +46,7 @@ Sierpinski carpet\
   -x <X>                         [default: 1000]
   -y <Y>                         [default: 1000]
   -e, --equidistant <PTS>        [default: 3]
+  -t, --theta <THETA>            [default: 1]
   -p, --points <COORDINATES>...
   -n, --numerator <NUM>          [default: 1]
   -d, --denominator <DENO>       [default: 2]
