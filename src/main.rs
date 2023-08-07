@@ -66,7 +66,6 @@ fn run_cli() -> Result<(), Error> {
                         + (args.y / 2) as f64) as usize,
                 })
             }
-            print!("{:#?}", vs);
         }
     }
 
