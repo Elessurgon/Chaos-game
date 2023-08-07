@@ -32,7 +32,7 @@ pub fn colors(index: usize) -> &'static str {
     &colors[index % colors.len()]
 }
 
-pub fn to_image(mat: Matrix) -> Result<(), Error> {
+pub fn to_image(mat: Matrix, bg_color: [u8; 3]) -> Result<(), Error> {
     let (imgx, imgy) = mat.shape();
     let pb = indicatif::ProgressBar::new((imgx * imgy) as u64);
     let mut img: RgbImage = ImageBuffer::new(imgx as u32, imgy as u32);
@@ -46,7 +46,7 @@ pub fn to_image(mat: Matrix) -> Result<(), Error> {
 
                 *pixel = image::Rgb([c.r, c.g, c.b]);
             } else {
-                *pixel = image::Rgb([255, 255, 255]);
+                *pixel = image::Rgb(bg_color);
             }
             pb.inc(1);
         }
@@ -94,7 +94,6 @@ impl Simulation {
         let mut rp = start.clone();
         for _ in 0..iters {
             let index = rand::thread_rng().gen_range(0..self.pts.len());
-            // let p = self.pts.choose(&mut rand::thread_rng()).unwrap();
             let p: &Point = &self.pts[index];
             let v1 = Vector2::new(rp.x, rp.y);
             let v2 = Vector2::new(p.x as i32, p.y as i32);

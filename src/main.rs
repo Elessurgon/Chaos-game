@@ -23,6 +23,8 @@ struct Cli {
     deno: f64,
     #[arg(short = 'i', long = "iter", default_value_t = 10000)]
     iters: i128,
+    #[arg(long = "color", value_parser, num_args = 1..3, value_delimiter = ',', default_values_t = [255, 255, 255])]
+    color: Vec<u8>,
 }
 
 #[derive(Debug, clap::Args)]
@@ -68,7 +70,12 @@ fn run_cli() -> Result<(), Error> {
         args.iters,
         &Vector2::new((args.x / 2) as i32, (args.y / 2) as i32),
     );
-    to_image(sim.mat)?;
+    let colors: [u8; 3] = if args.color.len() == 3 {
+        [args.color[0], args.color[1], args.color[2]]
+    } else {
+        [255, 255, 255]
+    };
+    to_image(sim.mat, colors)?;
     Ok(())
 }
 
