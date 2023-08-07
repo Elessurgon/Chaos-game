@@ -21,7 +21,7 @@ Example 5\
 <img src="./assets/image5.png" alt="5 points equidistant proportional distance of a 3.3/5.5(=0.6) iterated 100_000 times" width="250" height=250/>
 
 
-Using $\frac{n}{n+3}$ should yield equidistant an fractal structure
+Using $\frac{n}{n+3}$ should yield an equidistant fractal structure
 
 Example 6\
 `cargo run -- -x 1000 -y 1000 -e 10 -n 10 -d 13 -i 10000000`\
