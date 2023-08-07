@@ -17,8 +17,10 @@ struct Cli {
     y: usize,
     #[clap(flatten)]
     pts: PointsGroup,
-    #[arg(short = 'd', long = "dist", default_value_t = 2.0)]
-    prop: f64,
+    #[arg(short = 'n', long = "numberator", default_value_t = 1.0)]
+    num: f64,
+    #[arg(short = 'd', long = "denominator", default_value_t = 2.0)]
+    deno: f64,
     #[arg(short = 'i', long = "iter", default_value_t = 10000)]
     iters: i128,
 }
@@ -56,8 +58,16 @@ fn run_cli() -> Result<(), Error> {
         }
     }
 
-    let mut sim = Simulation::new(args.x as usize, args.y as usize, vs, args.prop as f64);
-    sim.run(args.iters, &Vector2::new(0, 0));
+    let mut sim = Simulation::new(
+        args.x as usize,
+        args.y as usize,
+        vs,
+        args.num / args.deno as f64,
+    );
+    sim.run(
+        args.iters,
+        &Vector2::new((args.x / 2) as i32, (args.y / 2) as i32),
+    );
     to_image(sim.mat)?;
     Ok(())
 }

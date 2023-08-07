@@ -45,7 +45,7 @@
             "program": "${workspaceFolder}//target//debug//chaos_game.exe",
             "args": [
                 "-x",
-                "2000","-y","2000" , "-e","4","-d", "3", "-i", "5"
+                "1000","-y","1000" , "-e","4", "-n", "2", "-d", "3", "-i", "5"
             ]
         }
     ]

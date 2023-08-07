@@ -36,7 +36,6 @@ pub fn to_image(mat: Matrix) -> Result<(), Error> {
     let (imgx, imgy) = mat.shape();
     let pb = indicatif::ProgressBar::new((imgx * imgy) as u64);
     let mut img: RgbImage = ImageBuffer::new(imgx as u32, imgy as u32);
-    let phi = (1.0 + (5.0 as f64).sqrt()) / 2.0;
     for x in 0..imgx as u32 {
         for y in 0..imgy as u32 {
             let pixel = img.get_pixel_mut(x, y);
@@ -83,6 +82,7 @@ impl Simulation {
     }
 
     fn draw(&mut self, pt: &Vector2<i32>, index: usize) {
+        // eprint!("{:#?}\n", pt);
         let x: &mut f32 = &mut self.mat[(pt[0] as usize, pt[1] as usize)];
         *x = (index + 1) as f32;
     }
@@ -92,15 +92,15 @@ impl Simulation {
 
         self.draw(&start, 0);
         let mut rp = start.clone();
-        for i in 0..iters {
+        for _ in 0..iters {
             let index = rand::thread_rng().gen_range(0..self.pts.len());
             // let p = self.pts.choose(&mut rand::thread_rng()).unwrap();
             let p: &Point = &self.pts[index];
             let v1 = Vector2::new(rp.x, rp.y);
             let v2 = Vector2::new(p.x as i32, p.y as i32);
             let draw_pt: Vector2<i32> = Vector2::new(
-                ((v1[0] + v2[0]).abs() as f64 / self.proportion) as i32,
-                ((v1[1] + v2[1]).abs() as f64 / self.proportion) as i32,
+                (v1[0] + ((v2[0] - v1[0]) as f64 * self.proportion) as i32),
+                (v1[1] + ((v2[1] - v1[1]) as f64 * self.proportion) as i32),
             );
 
             self.draw(&draw_pt, index);
