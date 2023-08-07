@@ -17,7 +17,7 @@ struct Cli {
     y: usize,
     #[clap(flatten)]
     pts: PointsGroup,
-    #[arg(short = 'n', long = "numberator", default_value_t = 1.0)]
+    #[arg(short = 'n', long = "numerator", default_value_t = 1.0)]
     num: f64,
     #[arg(short = 'd', long = "denominator", default_value_t = 2.0)]
     deno: f64,
