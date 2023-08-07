@@ -3,7 +3,7 @@ mod chaos;
 use std::f64::consts::PI;
 use std::fmt::{self, Display};
 
-use anyhow::{Context, Result};
+use anyhow::{Context, Error, Result};
 use chaos::simulation::to_image;
 use chaos::simulation::{Point, Simulation};
 use clap::{Args, Parser};
@@ -17,8 +17,8 @@ struct Cli {
     y: usize,
     #[clap(flatten)]
     pts: PointsGroup,
-    #[arg(short = 'd', long = "dist", default_value_t = 2)]
-    prop: i32,
+    #[arg(short = 'd', long = "dist", default_value_t = 2.0)]
+    prop: f64,
     #[arg(short = 'i', long = "iter", default_value_t = 10000)]
     iters: i128,
 }
@@ -32,7 +32,7 @@ struct PointsGroup {
     coordinates: Option<Vec<usize>>,
 }
 
-fn run_cli() {
+fn run_cli() -> Result<(), Error> {
     let args = Cli::parse();
 
     let mut vs: Vec<Point> = Vec::new();
@@ -56,11 +56,13 @@ fn run_cli() {
         }
     }
 
-    let mut sim = Simulation::new(args.x as usize, args.y as usize, vs, args.prop);
+    let mut sim = Simulation::new(args.x as usize, args.y as usize, vs, args.prop as f64);
     sim.run(args.iters, &Vector2::new(0, 0));
-    to_image(sim.mat)
+    to_image(sim.mat)?;
+    Ok(())
 }
 
-fn main() {
-    run_cli();
+fn main() -> Result<(), Error> {
+    run_cli()?;
+    Ok(())
 }
