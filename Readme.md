@@ -7,7 +7,7 @@ Example 2\
 <img src="./assets/image2.png" alt="4 points with a proportional distance of a 1/3" width="250" height=250/>
 
 Example 3\
-`cargo run -- -x 2000 -y 2000 -e 10 -d 3 -i 500000`
+`cargo run -- -x 2000 -y 2000 -e 10 -d 3 -i 500000`\
 <img src="./assets/image3.png" alt="10 points equidistant proportional distance of a third iterated 500_000 times" width="250" height=250/>
 
 Example 4\
